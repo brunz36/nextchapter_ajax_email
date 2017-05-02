@@ -1,0 +1,99 @@
+= form_for(@home, html: { class: "form-horizontal", role: "form" }) do |f|
+  - if @home.errors.any?
+    .alert.alert-danger.alert-dismissable role="alert"
+      button.close type="button" data-dismiss="alert"
+        span aria-hidden="true"
+          | &times;
+        span.sr-only
+          | Close
+      h4= "#{pluralize(@home.errors.count,"error")} prohibited this home from being saved:"
+      ul
+        - @home.errors.full_messages.each do |msg|
+          li= msg
+
+  .row.col-lg-12
+    .container-fluid.col-md-6.form_box
+      .form-group
+        = f.label :address, class: "col-md-5 col-lg-4 control-label"
+        .col-md-7.col-lg-8
+          = f.text_field :address, placeholder: "Address", class: "form-control"
+      .form-group
+        = f.label :city, class: "col-md-5 col-lg-4 control-label"
+        .col-md-7.col-lg-8
+          = f.text_field :city, placeholder: "City", class: "form-control"
+      .form-group
+        = f.label :state, class: "col-md-5 col-lg-4 control-label"
+        .col-md-7.col-lg-8
+          = f.text_field :state, placeholder: "State", class: "form-control"
+      .form-group
+        = f.label :zip, class: "col-md-5 col-lg-4 control-label"
+        .col-md-7.col-lg-8
+          = f.number_field :zip, placeholder: "Zip Code", class: "form-control"
+
+    .container-fluid.col-md-6.form_box
+      .form-group
+        = f.label :number_bedrooms, class: "col-md-5 col-lg-4 control-label"      
+        .col-md-7.col-lg-8
+          = f.number_field :number_bedrooms, placeholder: "Number of Bedrooms",class: "form-control"
+      .form-group
+        = f.label :number_bathrooms, class: "col-md-5 col-lg-4 control-label"      
+        .col-md-7.col-lg-8
+          = f.number_field :number_bathrooms, placeholder: "Number of Bathrooms", class: "form-control"
+      .form-group.inline
+        = f.label :sq_ft, class: "col-md-5 col-lg-4 control-label"      
+        .col-md-7.col-lg-8
+          = f.number_field :sq_ft, placeholder: "Square Feet", class: "form-control"
+      .form-group.inline
+        = f.label :price, class: "col-md-5 col-lg-4 control-label"      
+        .col-md-7.col-lg-8
+          = f.number_field :price, placeholder: "Price", class: "form-control"
+          
+    .container-fluid.col-md-6.form_box
+      .form-group
+        = f.label :roof, class: "col-md-5 col-lg-4 control-label"      
+        .col-md-7.col-lg-8
+          = f.text_field :roof, placeholder: "Roof Type", class: "form-control"
+      .form-group
+        = f.label :year_built, class: "col-md-5 col-lg-4 control-label"      
+        .col-md-7.col-lg-8
+          = f.text_field :year_built, placeholder: "Year Built", class: "form-control"
+      .form-group
+        = f.label :lot_size, class: "col-md-5 col-lg-4 control-label"      
+        .col-md-7.col-lg-8
+          = f.text_field :lot_size, placeholder: "Size of Lot", class: "form-control"
+      .form-group
+        = f.label :number_of_floors, class: "col-md-5 col-lg-4 control-label"      
+        .col-md-7.col-lg-8
+          = f.number_field :number_of_floors, placeholder: "Number of Floors", class: "form-control"
+          
+    .container-fluid.col-md-6.form_box
+      .form-group
+        = f.label :parking, class: "col-md-5 col-lg-4 control-label"
+        .col-md-7.col-lg-8
+          = f.select :parking, class: "form-control"
+            option None
+            option Street Parking
+            option Attached Garage
+            option Detached Garage
+      .form-group
+        = f.label :hoa, class: "col-md-5 col-lg-4 control-label"
+        .col-md-7.col-lg-8
+          = f.check_box :hoa, class: "form-control"
+      .form-group
+        = f.label :number_of_floors, class: "col-md-5 col-lg-4 control-label"      
+        .col-md-7.col-lg-8
+          = f.number_field :hoa_fee, placeholder: "HOA Fee", class: "form-control"
+      .form-group 
+        = f.label :image, class: "col-md-4 col-lg-4 control-label"
+        .col-md-6.col-lg-8
+          button.btn.btn-default type="button" 
+            = f.hidden_field :image, value: @home.cached_image_data
+            = f.file_field :image
+    .container-fluid.col-md-12.form_box_desc
+      .form-group
+        = f.label :description, class: "col-sm-2 control-label"
+        .col-sm-9
+          = f.text_area :description, rows: "5", maxlength: "5000", class: "form-control"
+      .form-group
+        .col-sm-offset-8.col-sm-2
+        = f.submit class: "btn btn-warning black_text"

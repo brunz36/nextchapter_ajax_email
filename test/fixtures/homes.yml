@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  address: MyString
+  city: MyString
+  state: MyString
+  zip: 1
+  number_bedrooms: 1
+  number_bathrooms: 1
+  sq_ft: 1
+  price: 1
+  description: MyString
+  created_by_id: 1
+  image_data: MyText
+  roof: MyString
+  parking: MyString
+  lot_size: 1
+  hoa: false
+  hoa_fee: 1
+  number_of_floors: 1
+  year_built: 1
+
+two:
+  address: MyString
+  city: MyString
+  state: MyString
+  zip: 1
+  number_bedrooms: 1
+  number_bathrooms: 1
+  sq_ft: 1
+  price: 1
+  description: MyString
+  created_by_id: 1
+  image_data: MyText
+  roof: MyString
+  parking: MyString
+  lot_size: 1
+  hoa: false
+  hoa_fee: 1
+  number_of_floors: 1
+  year_built: 1

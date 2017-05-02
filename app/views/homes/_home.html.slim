@@ -1,0 +1,21 @@
+.col-sm-6.index-listing.home-list
+  .col-sm-6.thumbnail.index-img.listing
+    - if home.image_url(:medium)
+      = link_to image_tag(home.image_url(:medium), size: "300x197"), home
+    - else
+      = link_to image_tag("no_img.jpg", size:"250x150"), home
+    h2.text-center #{number_to_currency(home.price, precision: 0)}
+  .col-sm-6.listing.index_details
+    = link_to home, class: "btn btn-warning glyphicon glyphicon-book black_text" do
+      span.btn_detail  Details
+    p.h4 = home.address
+    p.h4 #{home.city}, #{home.state} #{home.zip}
+    p Bedrooms: #{home.number_bedrooms}
+    p Bathrooms: #{home.number_bathrooms}
+    p Year Built: #{home.year_built}
+    .small-text
+      h4.sq-feet data-sq_feet="#{home.sq_ft}" data-sq-meters=home.square_meters data-showing-meters='false'
+        | Square Feet: #{home.sq_ft}
+    span.glyphicon.glyphicon-heart.home-favorite data-home-id=home.id class=favoriting_class(home, current_user)
+  .col-sm-12.listing.index_des
+    p= home.description

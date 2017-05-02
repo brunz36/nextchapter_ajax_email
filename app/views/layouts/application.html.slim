@@ -1,0 +1,71 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=edge"
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    meta name="description" content=""
+    meta name="author" content=""
+    title
+      | nextChapter
+    /! HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
+    /[if lt IE 9]
+      = javascript_include_tag "https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js", "https://oss.maxcdn.com/respond/1.4.2/respond.min.js"
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+body
+
+  nav.navbar.navbar-fixed-top[role="navigation"]
+    .container
+      .navbar-header
+        button.navbar-toggle.collapsed[type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"]
+          span.sr-only
+            | Toggle navigation
+          span.glyphicon.glyphicon-chevron-down
+        .navbar-brand
+          = link_to homes_path do
+            span.glyphicon.glyphicon-book.logo
+            | nextChapter
+      #navbar.collapse.navbar-collapse.pull-right
+        ul.nav.navbar-nav
+          - if logged_in?
+            li
+              p.navbar-text
+                | HELLO #{current_user.name.upcase}
+            li = link_to "LIST A NEW HOME", new_home_path
+            li
+              a[type="button" data-toggle="modal" data-target="#logout"  style="cursor:pointer"]
+                | LOGOUT
+          - else
+            li
+              = link_to auth_path(provider: 'github') do
+                span.fa.fa-github.black_text
+                |  Log In with GitHub
+
+
+  .modal.fade[id="logout" role="dialog" aria-labelledby="myModalLabel"]
+    .modal-dialog.modal-sm[role="document"]
+      .modal-content.modal-image
+        .modal-header
+          h3 Are you sure you want to logout?
+        .modal-body
+          button.btn.btn-warning = link_to "LOGOUT", logout_path
+          button.close[type="button" data-dismiss="modal" aria-label="Close"]
+            span[aria-hidden="true"]&times;
+
+  .container
+    - flash.each do |name, msg|
+      = content_tag :div, class: "alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do
+        button.close type="button" data-dismiss="alert"
+          span aria-hidden="true"
+            | &times;
+          span.sr-only
+            | Close
+        = msg
+        
+    = yield
+    
+    
+    
+  

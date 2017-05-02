@@ -1,0 +1,59 @@
+.page-header
+  - if current_user == @home.created_by
+    = link_to edit_home_path(@home), class: 'btn btn-warning btn_detail black_text' do 
+      span.glyphicon.glyphicon-book
+      |  edit this Chapter
+    = link_to @home, class: "btn btn-warning btn_detail black_text", method: :delete, data: { confirm: 'Are you sure?' } do
+      span.glyphicon.glyphicon-book
+      |  delete this Chapter
+  h2 =@home.address
+  h3 class="#{home_age(@home.created_at)} pull-right" Listed #{time_ago_in_words(@home.created_at)} ago
+  h2 #{@home.city}, #{@home.state} #{@home.zip}
+
+.container-fluid.home-list
+  .row
+    .col-md-6.thumbnail.splash_show
+      - if @home.image_url(:medium)
+        = image_tag(@home.image_url(:medium))
+      - else
+        = image_tag("no_img.jpg", size:"500x333")
+    .col-md-6.splash_show
+      h2.pull-right.price_border #{number_to_currency(@home.price, precision: 0)}
+      h4 Bedrooms: #{@home.number_bedrooms}
+      h4 Bathrooms: #{@home.number_bathrooms}
+      h4.sq-feet data-sq_feet="#{@home.sq_ft}"
+        | Square Feet: #{@home.sq_ft}
+      h4 Year Built: #{@home.year_built}
+      h4 Lot Size: #{@home.lot_size}
+      h4 Number of Floors: #{@home.number_of_floors}
+      h4 Roof Type: #{@home.roof}
+      h4 Parking: #{@home.parking}
+      - if @home.hoa?
+        h4 HOA: $#{@home.hoa_fee}
+      - else
+        h4 No HOA
+      h4 #{@home.impressionist_count} people visited this page
+  .row
+    .col-md-12.listing
+      - if @home.image_url(:medium)
+        button.btn.btn-warning.black_text.col-md-2[type="button" data-toggle="modal" data-target="#large-img-modal"]
+          | Large Picture
+        button.btn.btn-warning.black_text.col-md-2.col-md-offset-1[type="button" data-toggle="modal" data-target="#small-img-modal"]
+          | Small Picture
+        .modal.fade[id="large-img-modal" role="dialog" aria-labelledby="myModalLabel"]
+          .modal-dialog.modal-lg[role="document"]
+            .modal-content
+              .modal-body.modal-image
+                = image_tag(@home.image_url(:large))
+                button.close[type="button" data-dismiss="modal" aria-label="Close"]
+                  span[aria-hidden="true"]&times;
+                  
+        .modal.fade[id="small-img-modal" role="dialog" aria-labelledby="myModalLabel"]
+          .modal-dialog[role="document"]
+            .modal-content
+              .modal-body.modal-image
+                = image_tag(@home.image_url(:small))
+                button.close[type="button" data-dismiss="modal" aria-label="Close"]
+                  span[aria-hidden="true"]&times;
+    .col-md-12.description_show
+      h4 #{@home.description}

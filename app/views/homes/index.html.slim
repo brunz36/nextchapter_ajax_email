@@ -1,0 +1,17 @@
+.page-header
+  .row
+    h1.col-md-6 Your nextChapter
+    .col-md-6
+      = form_tag(homes_path, :method => "get", id: "search-form") do
+        = text_field_tag :query, params[:query], class: "col-xs-12 col-md-12", placeholder: "Search for your nextChapter"
+
+.row.index-homes.home-list
+  - if @homes.blank?
+    = render 'empty_homes'
+  - else
+    = render @homes
+
+.text-center
+  = paginate @homes, theme: "bootstrap"
+  / = paginate @homes, theme: "bootstrap", remote: true
+  / p = page_entries_info @homes

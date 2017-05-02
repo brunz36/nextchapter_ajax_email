@@ -1,0 +1,43 @@
+.landing-body {
+  background: image-url('hero.jpg') no-repeat center center fixed;
+  background-size: cover;
+  padding: 0;
+  margin: 0;
+}
+
+.splash {
+  border-left: 10px solid #f1ac38;
+  margin: 3em 0 0 2em;
+}
+
+.landing-buttons {
+  .row {
+    padding-bottom: 0.5em;
+  }
+
+  a {
+    color: #333;
+  }
+
+  a:hover {
+    color: inherit;
+  }
+}
+
+// To be used with fa-social to have a smaller button that is left-aligned
+// text with enough padding on the left to accomodate the icon
+.btn-social-nextchapter {
+  text-align: inherit;
+  padding-left: 40px;
+}
+
+.landing-title {
+  margin: 0em;
+  font-size: xx-large;
+  text-align: right;
+  padding: 0.5em 0.5em 0 0;
+}
+
+.logo {
+  padding-right: 1em;
+}

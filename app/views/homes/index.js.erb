@@ -1,0 +1,5 @@
+<% if @homes.empty? %>
+  $('.index-homes').html('<%= j(render 'empty_homes') %>')
+<% else %>
+  $('.index-homes').html('<%= j(render @homes) %>')
+<% end %>
