@@ -1,0 +1,5 @@
+<%= @home.created_by.name %> your home at:
+<%= @home.address%>
+<%= @home.city %>, <%= @home.state %> <%= @home.zip %>
+
+Was just favorited by <%= @user.name %> at <%= Time.now.asctime %>.

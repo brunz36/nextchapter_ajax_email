@@ -76,6 +76,8 @@ class HomesController < ApplicationController
   def favorite
     home = Home.find(params[:id])
 
+    UserMailer.favorite(current_user, home).deliver_later
+
     Favorite.create(home: home, user: current_user)
     Rails.logger.debug "FAVORITING"
   end
