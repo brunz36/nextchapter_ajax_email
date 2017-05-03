@@ -1,0 +1,18 @@
+h2 These are all our new Homes listed this week on nextChapter.
+- @new_listings.each do |home|
+  .col-sm-6.index-listing.home-list
+    .col-sm-6.thumbnail.index-img.listing
+      - if home.image_url(:medium)
+        = image_tag(home.image_url(:medium), size: "300x197")
+      h2.text-center #{number_to_currency(home.price, precision: 0)}
+    .col-sm-6.listing.index_details
+      p.h4 = home.address
+      p.h4 #{home.city}, #{home.state} #{home.zip}
+      p Bedrooms: #{home.number_bedrooms}
+      p Bathrooms: #{home.number_bathrooms}
+      p Year Built: #{home.year_built}
+      .small-text
+        h4.sq-feet data-sq_feet="#{home.sq_ft}" data-sq-meters=home.square_meters data-showing-meters='false'
+          | Square Feet: #{home.sq_ft}
+    .col-sm-12.listing.index_des
+      p= home.description

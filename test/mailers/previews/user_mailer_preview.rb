@@ -7,4 +7,8 @@ class UserMailerPreview < ActionMailer::Preview
   def favorite
     UserMailer.favorite(User.last, Home.first)
   end
+
+  def weekly_mailer
+    UserMailer.weekly_mailer
+  end
 end

@@ -1,0 +1,13 @@
+These are all our new Homes listed this week on nextChapter.
+
+<%- @new_listings.each do |home| %>
+Price <%= number_to_currency(home.price, precision: 0) %>
+<%= home.address %>
+<%= home.city %>, <%= home.state %> <%= home.zip %>
+Bedrooms: <%= home.number_bedrooms %>
+Bathrooms: <%=home.number_bathrooms %>
+Year Built: <%= home.year_built %>
+Square Feet: <%= home.sq_ft %>
+<%= home.description %>
+
+<%- end %>
