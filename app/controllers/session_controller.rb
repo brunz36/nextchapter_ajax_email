@@ -4,7 +4,6 @@ class SessionController < ApplicationController
 
   def create
     self.current_user = User.from_omniauth(request.env['omniauth.auth'])
-    UserMailer.welcome_email(current_user).deliver_later
 
     if current_user
       redirect_to homes_path
